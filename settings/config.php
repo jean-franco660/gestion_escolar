@@ -20,10 +20,10 @@ if (ENVIRONMENT === 'Development') {
 // ----------------------------
 // Configuración de la base de datos
 // ----------------------------
-define('DB_HOST', 'tu-endpoint-rds.amazonaws.com'); // Ej: db-gestion-escolar.cvfdadg7dmyd.us-east-1.rds.amazonaws.com
-define('DB_NAME', 'gestion_escolar');               // Base creada en RDS
+define('DB_HOST', 'db-gestionescolar.cvfdadg7dmyd.us-east-1.rds.amazonaws.com'); // Ej: db-gestion-escolar.cvfdadg7dmyd.us-east-1.rds.amazonaws.com
+define('DB_NAME', 'db-gestionescolar');               // Base creada en RDS
 define('DB_USER', 'root');                           // Usuario RDS
-define('DB_PASSWORD', 'root1231');              // Contraseña RDS
+define('DB_PASSWORD', 'root123456');              // Contraseña RDS
 
 
 // ----------------------------
@@ -31,14 +31,21 @@ define('DB_PASSWORD', 'root1231');              // Contraseña RDS
 // ----------------------------
 
 define('NAME_APP', 'sistema-gestion-escolar-php-mysql-desde-cero');
-define('BASE_PATH', __DIR__ . '../../');
-define('BASE_HOME', 'http://localhost/' . NAME_APP . '/');
+
+// Corrige la ruta base, subiendo dos niveles desde el directorio actual
+define('BASE_PATH', realpath(__DIR__ . '/../..'));
+
+// Rutas a componentes, carpetas y archivos usando la ruta base corregida
 define('BASE_PATH_COMPONENTS', BASE_PATH . '/components');
+define('SETTINGS_BD', BASE_PATH . '/config/settingBD.php');
+
+// URL base para acceder desde el navegador (usa servidor real en vez de localhost)
+define('BASE_HOME', 'http://' . $_SERVER['SERVER_NAME'] . '/' . NAME_APP . '/');
 define('BASE_STATIC', 'http://' . $_SERVER['SERVER_NAME'] . '/' . NAME_APP . '/');
-define('SETTINGS_BD', BASE_PATH . 'config/settingBD.php');
+
 
 define('BASE_PATH_AVATAR_PROFESORES', BASE_PATH . '/assets/avatar_profesores');
-define('BASE_PATH_AVATAR_ESTUDIANTES', BASE_PATH . '/assets/avatar_estudiantes');
+define('BASE_PATH_AVATAR_ESTUDIANTES', BASE_PATH . '/assets/avatar_estudiantes');   
 
 // -------------------------------
 // Lista de Bases Controllers ----
