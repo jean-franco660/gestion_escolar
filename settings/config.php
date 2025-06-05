@@ -20,10 +20,11 @@ if (ENVIRONMENT === 'Development') {
 // ----------------------------
 // Configuración de la base de datos
 // ----------------------------
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'bd_sistema_gestion_escolar');
-define('DB_USER', 'root');
-define('DB_PASSWORD', '');
+define('DB_HOST', 'tu-endpoint-rds.amazonaws.com'); // Ej: db-gestion-escolar.cvfdadg7dmyd.us-east-1.rds.amazonaws.com
+define('DB_NAME', 'gestion_escolar');               // Base creada en RDS
+define('DB_USER', 'root');                           // Usuario RDS
+define('DB_PASSWORD', 'root1231');              // Contraseña RDS
+
 
 // ----------------------------
 // Configuración de las rutas

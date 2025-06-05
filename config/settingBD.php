@@ -1,16 +1,11 @@
 <?php
-
-// Conexión a la base de datos usando las constantes definidas
-$servidor = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-
-// Verificar conexión
-if ($servidor->connect_error) {
-    die("Error de conexión: " . $servidor->connect_error);
-}
-
-// Configurar el charset a utf8mb4 para aceptar caracteres especiales
-if (!$servidor->set_charset("utf8mb4")) {
-    die("Error cargando el conjunto de caracteres utf8mb4: " . $servidor->error);
-} else {
-    //echo "Conexión exitosa con charset utf8mb4";
+try {
+    $dsn = "mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=utf8mb4";
+    $pdo = new PDO($dsn, DB_USER, DB_PASSWORD, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,        // Manejo de errores con excepciones
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,   // Para obtener resultados como array asociativo
+    ]);
+    // echo "Conexión exitosa con PDO";
+} catch (PDOException $e) {
+    die("Error de conexión: " . $e->getMessage());
 }
